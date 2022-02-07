@@ -3,19 +3,19 @@ public class TestOrders {
     public static void main(String[] args) {
     
         // Menu items
-        Items items1 = new Items();
+        Item items1 = new Items();
         items1.name = "mocha";
         items1.price = 11.50;
 
-        Items items2 = new Items();
+        Item items2 = new Items();
         items2.name = "latte";
         items2.price = 21.50;
 
-        Items items3 = new Items();
+        Item items3 = new Items();
         items3.name = "drip coffe";
         items3.price = 12.50;
 
-        Items items4 = new Items();
+        Item items4 = new Items();
         items4.name = "cappuccino";
         items4.price = 15.50;
     
