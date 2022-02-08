@@ -1,41 +1,45 @@
 import java.util.ArrayList;
 
 public class CoffeeKiosk {
+    // instantiating instances of classes
     private ArrayList<Item> menu = new ArrayList<Item>();
     private ArrayList<Orders> orders = new ArrayList<Orders>();
 
+    // constructor initialized to empty array
     public CoffeeKiosk(){
-
     }
 
+    // getters
     public ArrayList<Item> getMenu(){
         return menu;
     }
     public ArrayList<Orders> getOrders(){
         return orders;
     }
-
+    // add a menu item to class Item
+    // takes in a String and double, does not return
+    // adds an item to the menu in the Item class
+    // indexOf takes in an object and turns out an int? and gets added by setIndex
     public void addMenuItem(String name, double price){
         Item item = new Item(name, price);
+        // System.out.println(item);
+
         menu.add(item);
         int index = menu.indexOf(item);
         item.setIndex(index);
         
     }
 
-    public void addOrder(Orders orders){
-        this.orders.add(orders);
-    }
-
+    // display the menu to user
+    //  menu is the Item class list
     public void displayMenu() {
         for(Item i : this.menu) {
             System.out.println(i.getIndex() + " " + i.getName() + " -- " + i.getPrice());
         }
     }
 
-        public void newOrder() {
-        
-    	// Shows the user a message prompt and then sets their input to a variable, name
+    public void newOrder() {
+        // Shows the user a message prompt and then sets their input to a variable, name
         System.out.println("Please enter customer name for new order:");
         String name = System.console().readLine();
     
@@ -45,15 +49,16 @@ public class CoffeeKiosk {
         Orders order = new Orders(name);
         displayMenu();
         
-        // menu = addOrder(name);
-    	// Prompts the user to enter an item number
+
+    	// Prompts the user to enter an item number 0-5
         System.out.println("Please enter a menu item index or q to quit:");
         String itemNumber = System.console().readLine();
         
-        // Write a while loop to collect all user's order items
+        // while loop that executes until q is entered
         while(!itemNumber.equals("q")) {
-            // Get the item object from the menu, and add the item to the order
-            // Ask them to enter a new item index or q again, and take their input
+            /* itemNumber comes in as a string so it must be converted to an int.
+                the parseInt method parses a value as a string and returns the first integer. */
+            // unsure of Integer
             int i = Integer.parseInt(itemNumber);
             // System.out.println(i);
             if(i < this.menu.size()) {
@@ -62,11 +67,11 @@ public class CoffeeKiosk {
             } else{
                 System.out.println("Out of stock");
             }
-
+            //  call readLine in while loop so the user can keep inputting
             itemNumber = System.console().readLine();
         }
-        // After you have collected their order, print the order details 
-    	// as the example below. You may use the order's display method.
+        // once while loop is completed display users final order
+        // and add the final order with User name, item name(s), total price
         order.display();
         this.orders.add(order);
     }
