@@ -34,6 +34,12 @@ public class BankAccount {
     public double getSavingsBalance() {
         return this.savingsBalance;
     }
+    // static getter
+    //  do not need this because it refers to the whole class
+    // make sure to put in static
+    public static int getNumberOfAccounts() {
+        return numberOfAccounts;
+    }
     public void viewAccounts() {
         System.out.println("Checking Balance: " + checkingBalance + "\nSavings Balance: " + savingsBalance);
     }

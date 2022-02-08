@@ -13,6 +13,8 @@ public class TestBankAccount {
         account1.withdrawSavings(200);
         System.out.println(account1.getSavingsBalance());
         account1.viewAccounts();
+        //  static return
+        System.out.println(BankAccount.getNumberOfAccounts());
         System.out.println(account1.viewAccountNumber());
         
     }
