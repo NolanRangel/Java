@@ -11,8 +11,8 @@ public class Mammal {
 		return energyLevel;
 	}
 	
-	public void setEnergyLevel(int energy) {
-		this.energyLevel = this.energyLevel + energy;
+	public void setEnergyLevel(int energyLevel) {
+		this.energyLevel = this.energyLevel + energyLevel;
 	}
 	
 	public int displayEnergy() {

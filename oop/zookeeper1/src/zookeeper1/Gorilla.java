@@ -8,7 +8,7 @@ public class Gorilla extends Mammal {
 	}
 	
 	public void eatBanana() {
-		System.out.println("Gorilla eaten a banana! Energy increased by 5");
+		System.out.println("Gorilla eaten a banana! Energy increased by 10");
 		super.setEnergyLevel(10);
 	}
 	

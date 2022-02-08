@@ -3,8 +3,10 @@ package zookeeper1;
 public class MammalTest {
 
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
+
 		Gorilla harambe = new Gorilla();
+		Bat lucky = new Bat();
+		Bat charles = new Bat();
 		
 		harambe.throwItem();
 		harambe.throwItem();
@@ -13,7 +15,17 @@ public class MammalTest {
 		harambe.eatBanana();
 		harambe.climb();
 		
+		charles.attackTown();
+		charles.attackTown();
+		charles.attackTown();
+		charles.eatHuman();
+		charles.eatHuman();
+		charles.fly();
+		charles.fly();
+		
 		harambe.displayEnergy();
+		lucky.displayEnergy();
+		charles.displayEnergy();
 
 	}
 
