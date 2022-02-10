@@ -2,7 +2,6 @@ package com.caresoft.clinicapp;
 import java.util.ArrayList;
 
 public interface HIPAACompliantAdmin {
-    
     abstract ArrayList<String> reportSecurityIncidents();
     
     // DEFAULT IMPLEMENTED METHODS
