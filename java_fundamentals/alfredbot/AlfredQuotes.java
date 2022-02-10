@@ -44,3 +44,7 @@ public class AlfredQuotes {
     // Write your own AlfredQuote method using any of the String methods you have learned!
 }
 
+
+
+
+
