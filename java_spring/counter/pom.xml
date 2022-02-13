@@ -8,12 +8,12 @@
 		<version>2.6.3</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>com.nolan.hoppers</groupId>
-	<artifactId>hoppers</artifactId>
+	<groupId>com.nolan.counter</groupId>
+	<artifactId>counter</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>war</packaging>
-	<name>hoppers</name>
-	<description>Hopper Reciept  assignment</description>
+	<name>counter</name>
+	<description>Counter  Reciept  assignment</description>
 	<properties>
 		<java.version>1.8</java.version>
 	</properties>
@@ -25,6 +25,12 @@
 
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-devtools</artifactId>
+			<scope>runtime</scope>
+			<optional>true</optional>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-tomcat</artifactId>
 			<scope>provided</scope>
 		</dependency>
@@ -33,7 +39,7 @@
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
-		<dependency>
+		    <dependency>
         <groupId>org.apache.tomcat.embed</groupId>
         <artifactId>tomcat-embed-jasper</artifactId>
     </dependency>
@@ -41,14 +47,14 @@
         <groupId>javax.servlet</groupId>
         <artifactId>jstl</artifactId>
     </dependency>
-    
-        <dependency>
+
+    <!-- BOOTSTRAP DEPENDENCIES -->
+    <dependency>
         <groupId>org.webjars</groupId>
         <artifactId>webjars-locator</artifactId>
         <version>0.30</version>
     </dependency>
 
-    <!-- BOOTSTRAP DEPENDENCIES -->
     <dependency>
         <groupId>org.webjars</groupId>
         <artifactId>bootstrap</artifactId>
@@ -59,7 +65,6 @@
         <artifactId>jquery</artifactId>
         <version>3.6.0</version>
     </dependency>
-    
 	</dependencies>
 
 	<build>
