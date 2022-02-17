@@ -19,11 +19,20 @@ public class BooksApi {
      this.bookService = bookService;
  }
  
+// get all
  @RequestMapping("/api/books")
  public List<Book> index() {
      return bookService.allBooks();
  }
  
+//get one
+@RequestMapping("/api/books/{id}")
+public Book show(@PathVariable("id") Long id) {
+   Book book = bookService.findBook(id);
+   return book;
+}
+ 
+// create 
  @RequestMapping(value="/api/books", method=RequestMethod.POST)
  public Book create(
 		 @RequestParam(value="title") String title, 
@@ -35,12 +44,8 @@ public class BooksApi {
      return bookService.createBook(book);
  }
  
- @RequestMapping("/api/books/{id}")
- public Book show(@PathVariable("id") Long id) {
-     Book book = bookService.findBook(id);
-     return book;
- }
  
+// update
  @RequestMapping(value="/api/books/{id}", method=RequestMethod.PUT)
  public Book update(
  		@PathVariable("id") Long id, 
@@ -52,6 +57,7 @@ public class BooksApi {
      return book;
  }
  
+// delete
  @RequestMapping(value="/api/books/{id}", method=RequestMethod.DELETE)
  public void destroy(@PathVariable("id") Long id) {
      bookService.deleteBook(id);

@@ -1,4 +1,4 @@
-package com.nolan.books.models;
+package com.nolan.savetravels.models;
 
 
 import java.util.Date;
@@ -17,23 +17,25 @@ import javax.validation.constraints.Size;
 
 import org.springframework.format.annotation.DateTimeFormat;
 @Entity
-@Table(name="books")
-public class Book {
+@Table(name="expenses")
+public class Expense {
+	
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    
     @NotNull
-    @Size(min = 5, max = 200, message="Title must be more then 5 Characters!")
-    private String title;
+    @Size(min = 2, max = 200, message="Expense must be more then 2 Characters!")
+    private String name;
+    
     @NotNull
-    @Size(min = 5, max = 200, message="Description must be more then 5 Characters!")
-    private String description;
-    @NotNull
-    @Size(min = 3, max = 40, message="Language must be more then 3 Characters!")
-    private String language;
+    @Size(min = 2, max = 200, message="Vendor must be more then 2 Characters!")
+    private String vendor;
+    
     @NotNull(message="Must not be blank.")
-    @Min(value=100, message="Must be at least 100 pages.")
-    private Integer numberOfPages;
+//    @Min(value=1, message="Must be at least 100 pages.")
+    private Double amount;
+    
     // This will not allow the createdAt column to be updated after creation
     @Column(updatable=false)
     @DateTimeFormat(pattern="yyyy-MM-dd")
@@ -41,20 +43,22 @@ public class Book {
     @DateTimeFormat(pattern="yyyy-MM-dd")
     private Date updatedAt;
     
-    public Book() {
+//  empty constructor
+    public Expense() {
     }
     
-    public Book(String title, String desc, String lang, int pages) {
-        this.title = title;
-        this.description = desc;
-        this.language = lang;
-        this.numberOfPages = pages;
+    public Expense(String name, String vendor, double amount) {
+        this.name = name;
+        this.vendor = vendor;
+        this.amount = amount;
     }
     
+//   creates a new date on creation
     @PrePersist
     protected void onCreate(){
         this.createdAt = new Date();
     }
+//    updates udatedAt on save
     @PreUpdate
     protected void onUpdate(){
         this.updatedAt = new Date();
@@ -68,36 +72,29 @@ public class Book {
 		this.id = id;
 	}
 
-	public String getTitle() {
-		return title;
+
+	public String getName() {
+		return name;
 	}
 
-	public void setTitle(String title) {
-		this.title = title;
+	public void setName(String name) {
+		this.name = name;
 	}
 
-	public String getDescription() {
-		return description;
+	public String getVendor() {
+		return vendor;
 	}
 
-	public void setDescription(String description) {
-		this.description = description;
+	public void setVendor(String vendor) {
+		this.vendor = vendor;
 	}
 
-	public String getLanguage() {
-		return language;
+	public Double getAmount() {
+		return amount;
 	}
 
-	public void setLanguage(String language) {
-		this.language = language;
-	}
-
-	public Integer getNumberOfPages() {
-		return numberOfPages;
-	}
-
-	public void setNumberOfPages(Integer numberOfPages) {
-		this.numberOfPages = numberOfPages;
+	public void setAmount(Double amount) {
+		this.amount = amount;
 	}
 
 	public Date getCreatedAt() {
@@ -118,5 +115,6 @@ public class Book {
     
     
 }
+
 
 
