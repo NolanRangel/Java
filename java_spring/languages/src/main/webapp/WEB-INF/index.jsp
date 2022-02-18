@@ -63,7 +63,7 @@
 		    	</tr>
 		  	</thead>
 		  	<tbody >
-		     	<c:forEach var="language" items="${languages}">
+		     	<c:forEach var="language" items="${allLanguages}">
 		    		<tr class="align-items-center">
 						<td><a href='/languages/${language.id}'>${language.name}</a></td>
 						<td>${language.creator}</td>

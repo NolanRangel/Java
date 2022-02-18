@@ -32,8 +32,8 @@ public class LanguageController {
 			Model model,
 			@ModelAttribute("language")Language language) {
 		
-		List<Language> languages = languageService.allLanguages();
-		model.addAttribute("languages", languages);
+		List<Language> allLanguages = languageService.allLanguages();
+		model.addAttribute("allLanguages", allLanguages);
 		
 		return "index.jsp";
 	}
