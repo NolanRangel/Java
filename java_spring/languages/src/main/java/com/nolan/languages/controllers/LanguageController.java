@@ -51,9 +51,6 @@ public class LanguageController {
 	
 	// renders the create form page by itself
 	// @GetMapping("/expenses/new")
-	// public String create(@ModelAttribute("expense")Expense expense) {
-	// return "new.jsp";
-	// }
 	// post action route /books, creates new book, redirects to index
 	@PostMapping("/languages")
 	public String create(

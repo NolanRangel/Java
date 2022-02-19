@@ -66,7 +66,7 @@
 		     	<c:forEach var="language" items="${allLanguages}">
 		    		<tr class="align-items-center">
 						<td><a href='/languages/${language.id}'>${language.name}</a></td>
-						<td>${language.creator}</td>
+						<td><c:out value="${language.creator}"/></td>
 						<td>$ ${language.version}</td>
 						<td ><a href='/languages/edit/${language.id}' class="text-decoration-none text-warning ">Edit</a></td>
 						<td> 
@@ -85,7 +85,6 @@
 	<h2 class="text-center py-2 ">Add a Language!</h2>
 		<form:form action="/languages" method="post" modelAttribute="language" class=" p-3 mx-auto border shadow" >
 		
-	
 			<div class="form-group my-4">
 
 	        	<form:errors path="name" class="form-label text-danger"/>
