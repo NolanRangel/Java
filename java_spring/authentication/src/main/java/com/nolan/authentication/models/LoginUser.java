@@ -12,7 +12,7 @@ public class LoginUser {
     private String email;
     
     @NotEmpty(message="Password is required!")
-    @Size(min=8, max=128, message="Password must be between 8 and 128 characters")
+    @Size(min=8, max=128, message="Password must be at least 8 characters, include 1 uppercase letter, 1 lowercase letter, 1 number, and 1 special character.")
     private String password;
     
     public LoginUser() {}

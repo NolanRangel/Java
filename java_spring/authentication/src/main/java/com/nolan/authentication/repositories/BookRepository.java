@@ -1,11 +1,12 @@
-package com.nolan.books.repositories;
+package com.nolan.authentication.repositories;
 
 import java.util.List;
 
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
-import com.nolan.books.models.Book;
+import com.nolan.authentication.models.Book;
+
 
 @Repository
 public interface BookRepository extends CrudRepository<Book, Long> {
@@ -13,3 +14,4 @@ public interface BookRepository extends CrudRepository<Book, Long> {
     List<Book> findAll();
 
 }
+

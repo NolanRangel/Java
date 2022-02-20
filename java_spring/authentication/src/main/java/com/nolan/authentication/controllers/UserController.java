@@ -18,11 +18,13 @@ import com.nolan.authentication.services.UserService;
 
 
 @Controller
-public class UserController {
+public class UserController {								
 	
 //	brings in the User Service and its methods
 	@Autowired
 	private UserService userService;
+	
+
 	
 // renders the index page 
 	@GetMapping("/")
@@ -35,9 +37,13 @@ public class UserController {
 	
 //	processes the register request and adds userId and userName to session
     @PostMapping("/register")
-    public String register(@Valid @ModelAttribute("newUser") User newUser, 
-            BindingResult result, Model model, HttpSession session) {
-//        calls the register method in the services
+    public String register(
+    		@Valid @ModelAttribute("newUser") User newUser, 
+            BindingResult result, 
+            Model model, 
+            HttpSession session) {
+    	
+//      calls the register method in the services
     	userService.register(newUser, result);
 
         if(result.hasErrors()) { // UNSUCCESSFUL
@@ -46,14 +52,18 @@ public class UserController {
         }else { //SUCCESSFUL
         	session.setAttribute("userId", newUser.getId());
         	session.setAttribute("userName", newUser.getUserName());
-        	return "redirect:/dashboard";
+        	return "redirect:/books";
         }
+        // after register user is routed to /books (dashboard.jsp)
     }
     
-//    processes the login request and adds userId and userName to session
+//  processes the login request and adds userId and userName to session
     @PostMapping("/login")
-    public String login(@Valid @ModelAttribute("newLogin") LoginUser newLogin, 
-            BindingResult result, Model model, HttpSession session) {
+    public String login(@Valid @ModelAttribute(
+    		"newLogin") LoginUser newLogin, 
+            BindingResult result, 
+            Model model, 
+            HttpSession session) {
         
         // Add once service is implemented:
          User user = userService.login(newLogin, result);
@@ -64,19 +74,11 @@ public class UserController {
         }
     	session.setAttribute("userId", user.getId());
     	session.setAttribute("userName", user.getUserName());
-    	return "redirect:/dashboard";
+    	return "redirect:/books";
     }
+// after login user is routed to /books (dashboard.jsp)
     
-//    on successful login, routes to dashboard
-//    redirects to home if userId session is null
-    @GetMapping("/dashboard")
-    public String dashboard(HttpSession session) {
-    	if(session.getAttribute("userId")==null) {
-    		return "redirect:/";
-    	}
-    	
-    	return "dashboard.jsp";
-    }
+    
     
 //    Supposedly destroys all session occurrences
     @GetMapping("/logout")
