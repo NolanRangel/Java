@@ -59,10 +59,10 @@ public class Book {
 	private User user;
 	
 //	sets borrower
-//    @Nullable
-//    @ManyToOne(fetch = FetchType.LAZY)
-//    @JoinColumn(name="borrower_id")
-//    private User borrower;
+    @Nullable
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name="borrower_id")
+    private User borrower;
     
     
     public Book() {
@@ -138,6 +138,15 @@ public class Book {
 		this.updatedAt = updatedAt;
 	}
 
+	public User getBorrower() {
+		return borrower;
+	}
+
+	public void setBorrower(User borrower) {
+		this.borrower = borrower;
+	}
+
+	
 
 
 	

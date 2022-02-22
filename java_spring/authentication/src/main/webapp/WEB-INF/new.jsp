@@ -27,7 +27,7 @@
 
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark p-4">
         <div class="container-fluid me-auto ">
-            <a class="navbar-brand px-3 mr-5 fs-1 text-warning" href="/books">Welcome ${userName}!</a>
+            <a class="navbar-brand px-3 mr-5 fs-1 text-warning" href="/books">Welcome ${userName}</a>
             <a class="navbar-brand px-5 mx-5">Add A Book To Your Shelf</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"
                 aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
@@ -36,6 +36,9 @@
 
             <div class="collapse navbar-collapse d-flex justify-content-end " id="navbarNavDropdown">
                 <ul class="navbar-nav px-5">
+                	<li class="nav-item">
+						<a class="nav-link" href="/books/market">Book Market</a>
+					</li>
                     <li class="nav-item">
                         <a class="nav-link" href="/books">Dashboard</a>
                     </li>

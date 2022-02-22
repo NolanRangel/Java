@@ -56,8 +56,8 @@ public class User {
 	private List<Book> books;
 	
 //	one to many borrowed status
-//    @OneToMany(mappedBy = "borrower", fetch = FetchType.LAZY)
-//    private List<Book> borrowedBooks;
+    @OneToMany(mappedBy = "borrower", fetch = FetchType.LAZY)
+    private List<Book> borrowedBooks;
 //  
 //  empty constructor
     public User() {}
@@ -140,6 +140,13 @@ public class User {
 	public void setUpdatedAt(Date updatedAt) {
 		this.updatedAt = updatedAt;
 	}
+	public List<Book> getBorrowedBooks() {
+		return borrowedBooks;
+	}
+	public void setBorrowedBooks(List<Book> borrowedBooks) {
+		this.borrowedBooks = borrowedBooks;
+	}
+	
 	
 	
     

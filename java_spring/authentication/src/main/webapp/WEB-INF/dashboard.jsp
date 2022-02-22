@@ -24,7 +24,7 @@
 
 			<nav class="navbar navbar-expand-lg navbar-dark bg-dark p-4">
 				<div class="container-fluid me-auto ">
-					<a class="navbar-brand px-3 mr-5 fs-1 text-warning" href="/books">Welcome ${userName}!</a>
+					<a class="navbar-brand px-3 mr-5 fs-1 text-warning" href="/books">Welcome ${userName}</a>
 					<a class="navbar-brand px-5 fs-1 mx-5"> </a>
 					<button class="navbar-toggler" type="button" data-bs-toggle="collapse"
 						data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false"
@@ -50,7 +50,7 @@
 
 			<h2 class="text-center my-5">All Books</h2>
 
-			<div class="container ">
+			<div class="container mb-5 ">
 				<div class="container p-3 border  shadow" style="width: fit-content">
 					<table class="table table-striped mx-auto m-2">
 						<thead>

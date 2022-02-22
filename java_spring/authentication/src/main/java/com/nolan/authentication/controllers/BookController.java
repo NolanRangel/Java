@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.nolan.authentication.models.Book;
 import com.nolan.authentication.models.LoginUser;
@@ -139,8 +139,7 @@ public class BookController {
  		return "redirect:/books";
  	}
  	
-// toggle borrowed (Boolean true/false)
- 	
+//  renders book market page
  	@GetMapping("/books/market")
  	public String borrowedBooks(Model model, HttpSession session) {
  		model.addAttribute("newUser", new User()); //FOR REGISTER
@@ -159,6 +158,36 @@ public class BookController {
  		return "bookMarket.jsp";
  	}
  	
+//  checkout book 	
+    @PutMapping("/books/checkout")
+    public String bookCheckOut(@RequestParam("bookId") Long bookId, Model model, HttpSession session) {
+        if(session.getAttribute("userId") == null) {
+            model.addAttribute("loginUser", new LoginUser());
+            return "index.jsp";
+        }
+        
+        Book book = bookService.findBook(bookId);
+        User borrower = userService.oneUser((Long) session.getAttribute("userId"));
+        book.setBorrower(borrower);
+        bookService.updateBook(book);
+
+        return "redirect:/books/market";
+    }
+ 	
+//  return book
+    @PutMapping("/books/return")
+    public String bookReturn(@RequestParam("bookId") Long bookId, Model model, HttpSession session) {
+        if(session.getAttribute("userId") == null) {
+            model.addAttribute("loginUser", new LoginUser());
+            return "login.jsp";
+        }
+        
+        Book book = bookService.findBook(bookId);
+        book.setBorrower(null);
+        bookService.updateBook(book);
+        
+        return "redirect:/books/market";
+    }
 
 
  	
