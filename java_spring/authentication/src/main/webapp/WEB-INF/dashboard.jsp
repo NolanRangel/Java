@@ -38,6 +38,9 @@
 								<a class="nav-link" href="/books/new">Add a Book</a>
 							</li>
 							<li class="nav-item">
+								<a class="nav-link" href="/books/market">Book Market</a>
+							</li>
+							<li class="nav-item">
 								<a class="nav-link" href="/logout">Logout</a>
 							</li>
 						</ul>
@@ -70,9 +73,9 @@
 									<c:choose>
 										<c:when test="${book.user.id == userId}">
 											<td class="d-flex align-items-center gap-2">
-												<a href="/books/edit/${book.id}" class="btn btn-warning">Edit</a>
+												<a href="/books/${book.id}/edit" class="btn btn-warning">Edit</a>
 												|
-												<form action="/books/delete/${book.id }" method="post">
+												<form action="/books/${book.id }/delete" method="post">
 													<input type="hidden" name="_method" value="delete" />
 													<button class="btn btn-danger"> Delete </button>
 												</form>

@@ -12,6 +12,7 @@ import com.nolan.authentication.models.User;
 @Repository
 public interface UserRepository extends CrudRepository<User, Long>{
 	
+//	option means it has the option to return null if it cannot be found
 	Optional<User> findByEmail(String email);
 	
 	List<User> findAll();

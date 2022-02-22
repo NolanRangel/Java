@@ -46,27 +46,27 @@
 
 							<form:form action="/register" method="post" modelAttribute="newUser" class="py-2">
 								<div class="form-floating my-2">
-									<form:input path="userName" class="form-control" id="floatingInput"
+									<form:input path="userName" class="form-control" 
 										placeholder="Full Name" />
 									<label for="floatingInput">Full Name</label>
 									<form:errors path="userName" class="form-label alert-danger" />
 								</div>
 
-								<div class="form-floating mb-3">
-									<form:input path="email" type="email" class="form-control" id="floatingInput"
+								<div class="form-floating my-2">
+									<form:input path="email" type="email" class="form-control" 
 										placeholder="name@example.com" />
 									<label for="floatingInput">Email address</label>
 									<form:errors path="email" class="form-label alert-danger" />
 								</div>
-								<div class="form-floating">
-									<form:password path="password" class="form-control" id="floatingPassword"
+								<div class="form-floating my-2">
+									<form:password path="password" class="form-control" 
 										placeholder="Password" />
 									<label for="floatingPassword">Password</label>
 									<form:errors path="password" class="form-label alert-danger" />
 								</div>
 
 								<div class="form-floating my-2">
-									<form:password path="confirm" class="form-control" id="floatingPassword"
+									<form:password path="confirm" class="form-control" 
 										placeholder="Confirm Password" />
 									<label for="floatingPassword">Confirm Password</label>
 									<form:errors path="confirm" class="form-label alert-danger" />
@@ -82,13 +82,13 @@
 
 							<form:form action="/login" method="post" modelAttribute="newLogin" class="py-2">
 
-								<div class="form-floating mb-3">
+								<div class="form-floating my-2">
 									<form:input path="email" type="email" class="form-control" id="floatingInput"
 										placeholder="name@example.com" />
 									<label for="floatingInput">Email address</label>
 									<form:errors path="email" class="form-label alert-danger" />
 								</div>
-								<div class="form-floating">
+								<div class="form-floating ">
 									<form:input path="password" type="password" class="form-control"
 										id="floatingPassword" placeholder="Password" />
 									<label for="floatingPassword">Password</label>

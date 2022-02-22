@@ -76,12 +76,12 @@
         		<p class="card-text fs-4">${book.description}</p>
         		<c:choose>
             		<c:when test="${book.user.id == userId}" >
-                		<a href="/books/edit/${book.id}" class="btn btn-warning mt-4">Edit</a>
+                		<a href="/books/${book.id}/edit" class="btn btn-warning mt-4">Edit</a>
             		</c:when>
         		</c:choose>
         		<c:choose>
             		<c:when test="${book.user.id == userId}" >
-						<form action="/books/delete/${book.id }" method="post">
+						<form action="/books/${book.id }/delete" method="post">
 							<input type="hidden" name="_method" value="delete" />
 							<button  class="btn btn-danger"> Delete </button>
 						</form>						

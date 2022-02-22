@@ -25,8 +25,8 @@
 
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark p-4">
         <div class="container-fluid me-auto ">
-            <a class="navbar-brand px-3 mr-5 fs-1 text-warning" href="/books">The Book Broker!</a>
-            <a class="navbar-brand px-5 fs-1 mx-5">Hello, ${userName}. Welcome to...</a>
+            <a class="navbar-brand px-3 mr-5 fs-1 text-warning" href="/books">Welcome ${userName}</a>
+            <a class="navbar-brand px-5  mx-5">The Book Broker!</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"
                 aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -47,6 +47,8 @@
             </div>
         </div>
     </nav>
+            		
+        		
 	
 	
 <div class="container " >
@@ -64,9 +66,11 @@
 		    	</tr>
 		  	</thead>
 		  	<tbody >
+		  	<c:choose>
+		  		<c:when test="${book.borrowed == false}" >
 		     	<c:forEach var="book" items="${books}">
 		    		<tr>
-						<td> ${book.id}</td>
+						<td> ${book.borrowed}</td>
 						<td><a href='/books/${book.id}'>${book.title}</a></td>
 						<td>${book.author}</td>
 						<td>${book.user.userName}</td>
@@ -82,6 +86,8 @@
         				</c:choose>
 		    		</tr>
 				</c:forEach>
+				</c:when>
+			</c:choose>
 		  	</tbody>
 		</table>
 	</div>
@@ -102,25 +108,29 @@
 		    	</tr>
 		  	</thead>
 		  	<tbody >
-		     	<c:forEach var="book" items="${books}">
-		    		<tr>
-						<td> ${book.id}</td>
-						<td><a href='/books/${book.id}'>${book.title}</a></td>
-						<td>${book.author}</td>
-						<td>${book.user.userName}</td>
-						<c:choose>
-            				<c:when test="${book.user.id == userId}" >
-                				<td> 
-                					<a href="/books/edit/${book.id}" class="btn btn-warning mt-4">Edit</a>
-									<form action="/books/delete/${book.id }" method="post">
-										<input type="hidden" name="_method" value="delete" />
-										<button  class="btn btn-danger"> Delete </button>
-									</form>						
-								</td>
-            				</c:when>
-        				</c:choose>
-		    		</tr>
-				</c:forEach>
+		  	<c:choose>
+		  		<c:when test="${book.borrowed == true}" >
+			     	<c:forEach var="book" items="${books}">
+			    		<tr>
+							<td> ${book.id}</td>
+							<td><a href='/books/${book.id}'>${book.title}</a></td>
+							<td>${book.author}</td>
+							<td>${book.user.userName}</td>
+							<c:choose>
+	            				<c:when test="${book.user.id == userId}" >
+	                				<td> 
+	                					<a href="/books/${book.id}/edit" class="btn btn-warning mt-4">Edit</a>
+										<form action="/books/${book.id }/delete" method="post">
+											<input type="hidden" name="_method" value="delete" />
+											<button  class="btn btn-danger"> Delete </button>
+										</form>						
+									</td>
+	            				</c:when>
+	        				</c:choose>
+			    		</tr>
+					</c:forEach>
+				</c:when>
+			</c:choose>
 		  	</tbody>
 		</table>
 	</div>

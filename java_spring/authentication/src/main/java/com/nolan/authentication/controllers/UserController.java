@@ -1,6 +1,8 @@
 package com.nolan.authentication.controllers;
 
 
+import java.util.List;
+
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
@@ -12,8 +14,10 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import com.nolan.authentication.models.Book;
 import com.nolan.authentication.models.LoginUser;
 import com.nolan.authentication.models.User;
+import com.nolan.authentication.services.BookService;
 import com.nolan.authentication.services.UserService;
 
 
@@ -23,6 +27,9 @@ public class UserController {
 //	brings in the User Service and its methods
 	@Autowired
 	private UserService userService;
+
+	@Autowired
+	private BookService bookService;
 	
 
 	
@@ -35,6 +42,29 @@ public class UserController {
 		return "index.jsp";
 	}
 	
+    //	GET all books and all users and show dashboard
+	@GetMapping("/books")
+	public String index(Model model,
+			HttpSession session) {
+		
+		model.addAttribute("newUser", new User()); //FOR REGISTER
+		model.addAttribute("newLogin", new LoginUser()); //FOR LOGIN
+		
+        if (session.getAttribute("userId") == null) {
+            model.addAttribute("loginUser", new LoginUser());
+            model.addAttribute("newUser", new User());
+            return "index.jsp";
+        }
+        User user = userService.oneUser((Long) session.getAttribute("userId"));
+		List<Book> books = bookService.allBooks();
+		
+		model.addAttribute("books", books);
+        model.addAttribute("user", user);
+        
+        return "dashboard.jsp";
+
+	}
+	
 //	processes the register request and adds userId and userName to session
     @PostMapping("/register")
     public String register(
@@ -43,7 +73,7 @@ public class UserController {
             Model model, 
             HttpSession session) {
     	
-//      calls the register method in the services
+//      passing in the User object and any validations so far into the service register
     	userService.register(newUser, result);
 
         if(result.hasErrors()) { // UNSUCCESSFUL
@@ -80,10 +110,12 @@ public class UserController {
     
     
     
-//    Supposedly destroys all session occurrences
+//  destroys all session occurrences
     @GetMapping("/logout")
     public String logout(HttpSession session) {
-    	session.invalidate();
+    	session.removeAttribute("userId");
+    	session.removeAttribute("userName");
+//    	session.invalidate();
     	return "redirect:/";
     }
     

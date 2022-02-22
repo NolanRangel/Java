@@ -52,7 +52,7 @@
 	
 
 		<div class="col-6 p-3 border  shadow mx-auto my-5 py-5" >
-			<form:form action="/books/edit/${id}" method="post" modelAttribute="book" class="rounded w-50 p-3 mx-auto border shadow-lg" >
+			<form:form action="/books/${id}/edit" method="post" modelAttribute="book" class="rounded w-50 p-3 mx-auto border shadow-lg" >
 			<input type="hidden" name="_method" value="put" />
 		
 				<div class="form-group my-4">

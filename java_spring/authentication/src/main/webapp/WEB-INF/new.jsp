@@ -49,25 +49,28 @@
 
 	<h1 class="text-center my-5">New Book!</h1>
 	
-	<form:form action="/books" method="post" modelAttribute="book" class="rounded w-50 p-3 mx-auto border shadow" >
+	<form:form action="/books" method="post" modelAttribute="book" class="rounded w-25 p-3 mx-auto border shadow" >
 	
 
-		<div class="form-group my-4">
 
-        	<form:errors path="title" class="form-label text-danger"/>
-        	<form:input path="title" class="form-control" placeholder="Add a Title.."/>
-    	</div>
+    	<div class="form-floating my-2">
+			<form:input path="title" class="form-control" id="floatingInput" placeholder="Add a Title" />
+			<label for="floatingInput">Title</label>
+			<form:errors path="title" class="form-label alert-danger" />
+		</div>
     	
-    	<div class="form-group my-4">
+    	<div class="form-floating my-2">
 
+        	<form:textarea path="description"  class="form-control" placeholder="Add a Description"/>
+        	<label for="floatingInput">Description</label>
         	<form:errors path="description" class="form-label text-danger"/>
-        	<form:textarea path="description" class="form-control" placeholder="Add a Description.."/>
     	</div>
     	
-    	<div class="form-group my-4">
+    	<div class="form-floating my-2">
 
+        	<form:input path="author" class="form-control" placeholder="Add an Author"/>
+        	<label for="floatingInput">Author</label>
         	<form:errors path="author" class="form-label text-danger" />
-        	<form:input path="author" class="form-control" placeholder="Add an Author..."/>
     	</div>
     	  
 

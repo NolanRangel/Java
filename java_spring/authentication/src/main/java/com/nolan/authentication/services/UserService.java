@@ -56,7 +56,7 @@ public class UserService {
 		result.rejectValue("email", "unique", "Unknown email, Please Register");
 		return null;
 	}
-    // 3.1 grab the user from db
+    // 3.1 get the user from the potentialUser variable created on 52
 	User user = potentialUser.get();
 	
 	// 3.2 Check password with BCrypt --> failed --> reject

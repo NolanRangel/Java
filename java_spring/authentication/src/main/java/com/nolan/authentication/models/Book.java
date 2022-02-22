@@ -19,6 +19,7 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.lang.Nullable;
 
 
 
@@ -43,6 +44,8 @@ public class Book {
     @Size(min = 3, max = 40, message="Language must be more then 3 Characters!")
     private String author;
     
+    
+    
     // This will not allow the createdAt column to be updated after creation
     @Column(updatable=false)
     @DateTimeFormat(pattern="yyyy-MM-dd")
@@ -50,14 +53,22 @@ public class Book {
     @DateTimeFormat(pattern="yyyy-MM-dd")
     private Date updatedAt;
     
+//    attaches user id to book thats created
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name="user_id")
 	private User user;
+	
+//	sets borrower
+//    @Nullable
+//    @ManyToOne(fetch = FetchType.LAZY)
+//    @JoinColumn(name="borrower_id")
+//    private User borrower;
+    
     
     public Book() {
     }
     
-    public Book(String title, String desc, String auth) {
+    public Book(String title, String desc, String auth, Boolean borrowed) {
         this.title = title;
         this.description = desc;
         this.author = auth;
@@ -126,6 +137,10 @@ public class Book {
 	public void setUpdatedAt(Date updatedAt) {
 		this.updatedAt = updatedAt;
 	}
+
+
+
+	
     
     
 }

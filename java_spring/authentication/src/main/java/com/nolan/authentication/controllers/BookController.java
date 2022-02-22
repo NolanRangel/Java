@@ -36,23 +36,7 @@ public class BookController {
 	
 
 
-//	GET all books and all users and show dashboard
-	@GetMapping("/books")
-	public String index(Model model,
-			HttpSession session) {
-        if (session.getAttribute("userId") == null) {
-            model.addAttribute("loginUser", new LoginUser());
-            return "index.jsp";
-        }
-        User user = userService.oneUser((Long) session.getAttribute("userId"));
-		List<Book> books = bookService.allBooks();
-		
-		model.addAttribute("books", books);
-        model.addAttribute("user", user);
-        
-        return "dashboard.jsp";
 
-	}
 	
 //	GET one book and show
 	@GetMapping("/books/{bookid}")
@@ -76,6 +60,9 @@ public class BookController {
 //	GET new book form
 	@GetMapping("/books/new")
 	public String create(@ModelAttribute("book")Book book, HttpSession session, Model model) {
+		model.addAttribute("newUser", new User()); //FOR REGISTER
+		model.addAttribute("newLogin", new LoginUser()); //FOR LOGIN
+		
         if (session.getAttribute("userId") == null) {
             model.addAttribute("loginUser", new LoginUser());
             return "index.jsp";
@@ -96,6 +83,7 @@ public class BookController {
 		} 
 		else {
 	        User user = userService.oneUser((Long) session.getAttribute("userId"));
+//	        sets the owner of the created book to the user
 	        book.setUser(user);
 			bookService.createBook(book);
 			return "redirect:/books";
@@ -103,10 +91,13 @@ public class BookController {
 	}
 	
 //	 GET edit book form
-    @GetMapping("/books/edit/{id}")
+    @GetMapping("/books/{id}/edit")
     public String editForm(@PathVariable("id") Long id,
         Model model, HttpSession session) {
-        
+		model.addAttribute("newUser", new User()); //FOR REGISTER
+		model.addAttribute("newLogin", new LoginUser()); //FOR LOGIN
+		
+//      book auto populates by grabbing the book by id then setting the modelAttribute
         Book book = bookService.findBook(id);
         
         if(session.getAttribute("userId") == null) {
@@ -126,10 +117,10 @@ public class BookController {
     }
 
 // PUT edit book
-    @PutMapping("/books/edit/{id}")
+    @PutMapping("/books/{id}/edit")
     public String editBook(@Valid @ModelAttribute("book") Book book,
         BindingResult result, HttpSession session) {
-        
+                                                                                                                                                                             
         if(result.hasErrors()) {
             return "edit.jsp";
         }
@@ -140,13 +131,35 @@ public class BookController {
     }
 	
  // Delete
- 	@DeleteMapping("/books/delete/{id}")
+ 	@DeleteMapping("/books/{id}/delete")
  	public String deleteBook(@PathVariable("id")Long id) {
  		
  		bookService.deleteBook(id);
  		
  		return "redirect:/books";
  	}
+ 	
+// toggle borrowed (Boolean true/false)
+ 	
+ 	@GetMapping("/books/market")
+ 	public String borrowedBooks(Model model, HttpSession session) {
+ 		model.addAttribute("newUser", new User()); //FOR REGISTER
+ 		model.addAttribute("newLogin", new LoginUser()); //FOR LOGIN 	
+ 		
+        if (session.getAttribute("userId") == null) {
+            model.addAttribute("loginUser", new LoginUser());
+            return "index.jsp";
+        }
+        User user = userService.oneUser((Long) session.getAttribute("userId"));
+		List<Book> books = bookService.allBooks();
+		
+		model.addAttribute("books", books);
+        model.addAttribute("user", user);
+ 		
+ 		return "bookMarket.jsp";
+ 	}
+ 	
+
 
  	
 	
