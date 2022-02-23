@@ -1,4 +1,4 @@
-package com.nolan.authentication.controllers;
+package com.nolan.beltexam.controllers;
 
 
 import java.util.List;
@@ -14,11 +14,11 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
-import com.nolan.authentication.models.Book;
-import com.nolan.authentication.models.LoginUser;
-import com.nolan.authentication.models.User;
-import com.nolan.authentication.services.BookService;
-import com.nolan.authentication.services.UserService;
+import com.nolan.beltexam.models.LoginUser;
+import com.nolan.beltexam.models.Show;
+import com.nolan.beltexam.models.User;
+import com.nolan.beltexam.services.ShowService;
+import com.nolan.beltexam.services.UserService;
 
 
 @Controller
@@ -27,9 +27,10 @@ public class UserController {
 //	brings in the User Service and its methods
 	@Autowired
 	private UserService userService;
-
+	
 	@Autowired
-	private BookService bookService;
+	private ShowService showService;
+
 	
 
 	
@@ -44,7 +45,7 @@ public class UserController {
 	}
 	
     //	GET all books and all users and show dashboard
-	@GetMapping("/books")
+	@GetMapping("/shows")
 	public String index(Model model, HttpSession session) {
 		
 		model.addAttribute("newUser", new User()); //FOR REGISTER
@@ -53,13 +54,13 @@ public class UserController {
         if (session.getAttribute("userId") == null) {
             model.addAttribute("loginUser", new LoginUser());
             model.addAttribute("newUser", new User());
-            return "index.jsp";
+            return "redirect:/";
         }
         
         User user = userService.oneUser((Long) session.getAttribute("userId"));
-		List<Book> books = bookService.allBooks();
+		List<Show> shows = showService.allShows();
 		
-		model.addAttribute("books", books);
+		model.addAttribute("shows", shows);
         model.addAttribute("user", user);
         
         return "dashboard.jsp";
@@ -83,7 +84,7 @@ public class UserController {
         }else { //SUCCESSFUL
         	session.setAttribute("userId", newUser.getId());
         	session.setAttribute("userName", newUser.getUserName());
-        	return "redirect:/books";
+        	return "redirect:/shows";
         }
         // after register user is routed to /books (dashboard.jsp)
     }
@@ -105,7 +106,7 @@ public class UserController {
         }
     	session.setAttribute("userId", user.getId());
     	session.setAttribute("userName", user.getUserName());
-    	return "redirect:/books";
+    	return "redirect:/shows";
     }
 // after login user is routed to /books (dashboard.jsp)
     

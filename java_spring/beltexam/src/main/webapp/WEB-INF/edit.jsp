@@ -20,14 +20,12 @@
 
 </head>
 
-<body>
-
 		
     <!-- NAVBAR -->
 
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark p-4">
         <div class="container-fluid me-auto ">
-            <a class="navbar-brand px-3 mr-5 fs-1 text-warning" href="/books">Welcome ${userName}</a>
+            <a class="navbar-brand px-3 mr-5 fs-1 text-warning" href="/shows">Welcome ${userName}</a>
             <a class="navbar-brand px-5 fs-1 mx-5"> </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"
                 aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
@@ -37,13 +35,7 @@
             <div class="collapse navbar-collapse d-flex justify-content-end " id="navbarNavDropdown">
                 <ul class="navbar-nav px-5">
                     <li class="nav-item">
-                        <a class="nav-link" href="/books/new">Add a Book</a>
-                    </li>
-                    <li class="nav-item">
-						<a class="nav-link" href="/books/market">Book Market</a>
-					</li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/books">Dashboard</a>
+                        <a class="nav-link" href="/shows">Dashboard</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="/logout">Logout</a>
@@ -55,36 +47,52 @@
 	
 
 		<div class="col-6 p-3 border  shadow mx-auto my-5 py-5" >
-			<form:form action="/books/${id}/edit" method="post" modelAttribute="book" class="rounded w-50 p-3 mx-auto shadow" >
+		<div>
+			<h2 class="text-center">The Wire</h2>
+		</div>
+			<form:form action="/shows/${id}/edit" method="post" modelAttribute="show" class="w-50 p-3 mx-auto shadow" >
 			<input type="hidden" name="_method" value="put" />
 		
 				<div class="form-group my-4">
-	
 		        	<form:errors path="title" class="form-label text-danger"/>
 		        	<form:input path="title" class="form-control" placeholder="Add a Title.."/>
 		    	</div>
 		    	
 		    	<div class="form-group my-4">
-	
+		        	<form:errors path="network" class="form-label text-danger"/>     
+		        	<form:input  path="network" class="form-control" placeholder="Enter a Network.."/>
+		    	</div>
+		    	
+		    	<div class="form-group my-4">
 		        	<form:errors path="description" class="form-label text-danger"/>
 		        	<form:textarea path="description" class="form-control" placeholder="Add a Description.."/>
 		    	</div>
 	
-		    	<div class="form-group my-4">
-	
-		        	<form:errors path="author" class="form-label text-danger"/>     
-		        	<form:input  path="author" class="form-control" placeholder="Enter an Author.."/>
-		    	</div>    
+    
 		
 				<div>
 					<input type="submit" value="Edit" class="btn btn-warning mt-3"/>		
 				</div>
 				
 			</form:form>
+			<div class="d-flex justify-content-center mt-3">
+				<div>
+					<a class="btn btn-primary mx-auto" href="/shows">Cancel</a>		
+				</div>	
+			</div>
 
+			<form action="/shows/${show.id }/delete" method="post">
+				<div class=" text-center">
+					<input type="hidden" name="_method" value="delete" />
+					<button  class="btn btn-danger mt-3"> Delete </button>			
+				</div>
+			</form>	
 	</div>
 
 
 </body>
+
+
+
 
 </html>

@@ -54,7 +54,7 @@
 
 
 	<div class="container">
-		<div  class="card w-25 mx-auto mt-5 d-flex rounded shadow-lg p-3">
+		<div  class="card w-25 mx-auto mt-5 d-flex  shadow p-3">
 			<div class="card-header border-3 border-bottom border-dark">
 				<h2>${book.title}</h2>
 			</div>
@@ -86,7 +86,7 @@
             		<c:when test="${book.user.id == userId}" >
 						<form action="/books/${book.id }/delete" method="post">
 							<input type="hidden" name="_method" value="delete" />
-							<button  class="btn btn-danger"> Delete </button>
+							<button  class="btn btn-danger mt-3"> Delete </button>
 						</form>						
             		</c:when>
         		</c:choose>

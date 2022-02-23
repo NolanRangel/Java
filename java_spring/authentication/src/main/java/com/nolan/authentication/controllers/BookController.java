@@ -29,7 +29,7 @@ public class BookController {
 	
 //	use dependency injection to bring in the  book and user service page
 	@Autowired
-	BookService bookService;
+	private BookService bookService;
 	
 	@Autowired
 	private UserService userService;
@@ -104,13 +104,7 @@ public class BookController {
             model.addAttribute("loginUser", new LoginUser());
             return "index.jsp";
         }
-        if(session.getAttribute("userId") != (book.getUser().getId())) {
-            User user = userService.oneUser((Long) session.getAttribute("userId"));
-            List<Book> books = bookService.allBooks();
-            model.addAttribute("books", books);
-            model.addAttribute("user", user);
-            return "dashboard.jsp";
-        }
+
         
         model.addAttribute("book", book);
         return "edit.jsp";
@@ -124,6 +118,7 @@ public class BookController {
         if(result.hasErrors()) {
             return "edit.jsp";
         }
+        
         User user = userService.oneUser((Long) session.getAttribute("userId"));
         book.setUser(user);
         bookService.updateBook(book);
@@ -142,13 +137,15 @@ public class BookController {
 //  renders book market page
  	@GetMapping("/books/market")
  	public String borrowedBooks(Model model, HttpSession session) {
+ 		
  		model.addAttribute("newUser", new User()); //FOR REGISTER
- 		model.addAttribute("newLogin", new LoginUser()); //FOR LOGIN 	
+ 		model.addAttribute("newLogin", new LoginUser()); //FOR LOGIN 
  		
         if (session.getAttribute("userId") == null) {
             model.addAttribute("loginUser", new LoginUser());
             return "index.jsp";
         }
+        
         User user = userService.oneUser((Long) session.getAttribute("userId"));
 		List<Book> books = bookService.allBooks();
 		
@@ -160,11 +157,10 @@ public class BookController {
  	
 //  checkout book 	
     @PutMapping("/books/checkout")
-    public String bookCheckOut(@RequestParam("bookId") Long bookId, Model model, HttpSession session) {
-        if(session.getAttribute("userId") == null) {
-            model.addAttribute("loginUser", new LoginUser());
-            return "index.jsp";
-        }
+    public String bookCheckOut(
+    		@RequestParam("bookId") Long bookId,
+    		Model model,
+    		HttpSession session) {
         
         Book book = bookService.findBook(bookId);
         User borrower = userService.oneUser((Long) session.getAttribute("userId"));
@@ -176,11 +172,11 @@ public class BookController {
  	
 //  return book
     @PutMapping("/books/return")
-    public String bookReturn(@RequestParam("bookId") Long bookId, Model model, HttpSession session) {
-        if(session.getAttribute("userId") == null) {
-            model.addAttribute("loginUser", new LoginUser());
-            return "login.jsp";
-        }
+    public String bookReturn(
+    		@RequestParam("bookId") Long bookId,
+    		Model model, 
+    		HttpSession session) {
+
         
         Book book = bookService.findBook(bookId);
         book.setBorrower(null);

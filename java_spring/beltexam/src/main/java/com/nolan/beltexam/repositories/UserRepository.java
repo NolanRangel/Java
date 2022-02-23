@@ -1,4 +1,4 @@
-package com.nolan.authentication.repositories;
+package com.nolan.beltexam.repositories;
 
 import java.util.List;
 import java.util.Optional;
@@ -6,7 +6,8 @@ import java.util.Optional;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
-import com.nolan.authentication.models.User;
+import com.nolan.beltexam.models.User;
+
 
 
 @Repository
@@ -18,3 +19,4 @@ public interface UserRepository extends CrudRepository<User, Long>{
 	
 	List<User> findAll();
 }
+
